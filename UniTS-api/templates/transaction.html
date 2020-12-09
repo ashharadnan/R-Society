@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+        {% block content %}
+			{% for message in get_flashed_messages() %}
+		  <div class="alert-success h3 card" style="padding: 1% 1%;">{{message}}</div>
+		  {% endfor %}
+		  <div class="display-4" style="border-bottom: 2px solid #484848; padding-bottom: 25px">Transaction: {{trans.id}}</div>
+		  <div class="card" style="padding: 1% 1%">
+			  <div class="card-title">
+				  <div class="card-columns" style="margin: auto"><h5>Benefactor: {{trans.fr}}</h5><h5><br></h5>
+				  <h5 class="text-right" style="margin: auto">Beneficiary: {{trans.to}}</h5></div>
+				  
+			  </div>
+			  <div class="card-columns"><h6>Date: {{trans._datetime}}</h6><h6><br></h6>
+				  <h6 class="text-right" >Amount: PKR {{trans.amount}}</h6></div>
+			  <div class="card-footer">
+				  <h6>Comments:</h6> <p>{{trans._comments}}</p>
+			  </div>
+		  </div>
+		{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "form_template.html" %}
+
+			{% block content %}
+    <form class="form-signin" action="/register" method="post">
+		{{ form.hidden_tag() }}
+      <h2 class="form-signin-heading">Register</h2>
+		{% for message in get_flashed_messages() %}
+		<div class="alert-danger" style=" color: #D30000; font-size: 16px; text-align: center">{{message}}</div>
+		{% endfor %}
+		{% for error in form.email.errors %}
+		<div class="alert-danger" style=" color: #D30000; font-size: 16px; text-align: center">{{error}}</div>
+		{% endfor %}
+		{% for error in form.phone.errors %}
+		<div class="alert-danger" style=" color: #D30000; font-size: 16px; text-align: center">{{error}}</div>
+		{% endfor %}
+		{% for error in form.password.errors %}
+		<div class="alert-danger" style=" color: #D30000; font-size: 16px; text-align: center">{{error}}</div>
+		{% endfor %}
+		{{ form.email(class_="form-control", placeholder="Email Address", required="", autofocus="") }}
+		{{ form.uname(class_="form-control", placeholder="Username", required="") }}
+		{{ form.phone(class_="form-control", placeholder="Phone Number", required="") }}
+		{{ form.password(class_="form-control", style="margin-bottom: -1px; margin-top: -1px", placeholder="Password", required="") }}
+		{{ form.confirm(class_="form-control", placeholder="Confirm Password", required="") }}
+      <label class="checkbox">
+        {{ form.TOS(class_="checkbox", required="")}} I have read and understood the Terms and Conditions.
+      </label>
+		{{ form.submit(class_="btn btn-lg btn-primary btn-block") }}   
+    </form>
+			{% endblock %}
+  

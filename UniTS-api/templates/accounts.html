@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+        {% block content %}
+		  <div class="display-4" style="border-bottom: 2px solid #484848; padding-bottom: 25px">You currently have {{current_user.accounts | length}} accounts added:</div>
+		  {% for account in current_user.accounts %}
+		  <div class="card" style="padding: 1% 1%">
+			  <div class="card-title">
+				  <div class="card-columns" style="margin: auto"><h5>Account Number: {{account.id}}</h5><h5><br></h5>
+				  <h5 class="text-right" style="color: green">PKR {{account.balance}}</h5></div>
+				  
+			  </div>
+			  <div class="card-columns"><h6>{{account.bank}}</h6><h6><br></h6>
+				  <h6 class="text-right" ><a href="/accounts/{{account.id}}">View Transactions</a></h6></div>
+		  </div>
+		  <br>
+		  {% endfor %}
+		{% endblock %}
+      

@@ -1,0 +1,15 @@
+{% extends "form_template.html" %}
+
+			{% block content %}
+    <form class="form-signin" action="/otp" method="post">
+		{{ form.hidden_tag() }}
+      <h2 class="form-signin-heading">Verify OTP</h2>
+		<div class="alert-info" style=" font-size: 16px; text-align: center">An OTP has been sent to your phone number and email address.</div>
+		{% for message in get_flashed_messages() %}
+		<div class="alert-danger" style=" color: #D30000; font-size: 16px; text-align: center">{{message}}</div>
+		{% endfor %}
+		{{ form.otp(class_="form-control", placeholder="Enter OTP", required="", autofocus="") }}
+		{{ form.submit(class_="btn btn-lg btn-primary btn-block") }}  
+    </form>
+			{% endblock %}
+  

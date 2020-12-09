@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+        {% block content %}
+		  <div class="display-4" style="border-bottom: 2px solid #484848; padding-bottom: 25px">{{acc.bank}} Account: {{acc.id}}</div>
+		  <div class="card" style="padding: 1% 1%">
+			  <div class="card-title">
+				  <div class="card-columns" style="margin: auto"><h5>Opening Balance:</h5><h5><br></h5>
+				  <h5 class="text-right" style="color: green">PKR {{acc.opening_bal}}</h5></div>
+
+			  </div>
+		  </div>
+		  <br>
+		  {% for transaction in acc.list_transactions() %}
+		  <div class="card" style="padding: 1% 1%">
+			  <div class="card-title">
+				  <div class="card-columns" style="margin: auto"><h5>Transaction Number: {{transaction.id}}</h5><h5>{{transaction._datetime}}</h5>
+					  {% if transaction.fr == acc.id|string %}
+				  <h5 class="text-right" style="color: firebrick">PKR {{transaction.amount}}</h5>
+				  {% else %}
+				  <h5 class="text-right" style="color: green">PKR {{transaction.amount}}</h5>
+					  {% endif %}
+				  </div>
+
+			  </div>
+			  <div class="card-columns"><h6>From: {{transaction.fr}} -> To: {{transaction.to}}</h6><h6><br></h6>
+				  <h6 class="text-right" ><a href="/transaction/{{acc.id}}/{{transaction.id}}">Transaction Details</a></h6></div>
+		  </div>
+		  <br>
+		  {% endfor %}
+		  <div class="card" style="padding: 1% 1%">
+			  <div class="card-title">
+				  <div class="card-columns" style="margin: auto"><h5>Closing Balance:</h5><h5><br></h5>
+				  <h5 class="text-right" style="color: green">PKR {{acc.balance}}</h5></div>
+
+			  </div>
+		  </div>
+		{% endblock %}

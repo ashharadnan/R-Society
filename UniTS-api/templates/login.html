@@ -1,0 +1,16 @@
+{% extends "form_template.html" %}
+			{% block content %}
+    <form class="form-signin" action="/" method="post">       
+      <h2 class="form-signin-heading">Login</h2>
+		{% for message in get_flashed_messages() %}
+		<div class="alert-danger" style=" color: #D30000; font-size: 16px; text-align: center">{{message}}</div>
+		{% endfor %}
+		{{ form.hidden_tag() }}
+		{{ form.uname(class_="form-control", placeholder="Username", required="", autofocus="") }}
+		
+		{{ form.pw(class_="form-control", placeholder="Password", required="") }}
+		<span><a class="nav-link" href="/register">New user? Register</a></span>
+		{{ form.submit(class_="btn btn-lg btn-primary btn-block") }}
+    </form>
+			{% endblock %}
+  
