@@ -6,5 +6,7 @@ flask-wtf
 twilio
 flask-qrcode
 flask-bootstrap
+python-dotenv
+resources
 gunicorn
 pyopenssl
