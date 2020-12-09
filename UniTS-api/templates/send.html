@@ -10,7 +10,7 @@
 		{% endfor %}
 		{{ form.hidden_tag() }}
 		{{ form.fr(class_="form-control", placeholder="Select Account", required="", autofocus="") }}
-		{{ form.to(class_="form-control", placeholder="Enter Beneficiary Account", required="") }}
+		{{ form.to(class_="form-control", placeholder="Enter Beneficiary Account IBAN or UniTS Account Number", required="") }}
 		{{ form.amount(class_="form-control", placeholder="Enter Amount", required="") }}
 		{{ form.comments(class_="form-control", placeholder="Comments", required="") }}
 		{{ form.otp(class_="form-control", placeholder="Enter OTP", required="") }}

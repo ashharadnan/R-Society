@@ -164,7 +164,8 @@ class User(UserMixin):
                     "Amount": amount
                 }
                 ip = BANK_SERVERS[bank]
-                trans = requests.post(f"https://{ip}/t/new", data=t_json)
-                return trans["Transaction#"]
-            except:
+                trans = requests.post(f"https://{ip}/t/new", data=t_json, verify=False)
+                return trans.json()["Transaction#"]
+            except Exception as e:
+                print(e)
                 return False

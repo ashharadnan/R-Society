@@ -3,6 +3,7 @@ from flask import Flask, request, flash, redirect, url_for, session, render_temp
 from flask_bootstrap import Bootstrap
 from flask_restful import Api
 from flask_login import LoginManager, current_user, login_user, logout_user, login_required
+from flask_qrcode import QRcode
 from json import dumps
 from resources import *
 from forms import LoginForm, OTPForm, RegisterForm, SendForm
@@ -18,6 +19,8 @@ bootstrap = Bootstrap(app)
 log_mgr = LoginManager()
 log_mgr.init_app(app)
 log_mgr.login_view = "login"
+
+qrcode = QRcode(app)
 
 api.add_resource(Accounts, "/a/<acc_num>")
 api.add_resource(Transactions, "/ts/<acc_num>")
@@ -159,12 +162,22 @@ def send(o):
             result = current_user.new_transaction(bank, fr, form.to.data, form.comments.data, amount)
             if result:
                 flash("The transaction was successful!")
-                return redirect(f"/transaction/{form.fr.data}/{result}")
+                return redirect(f"/transaction/{fr}/{result}")
             else:
                 flash("Your transaction could not be processed")
                 return render_template("send.html", form=form, hsh=generate_password_hash(session["user"]))
         return render_template("send.html", form=form, hsh=generate_password_hash(session["user"]))
 
+    else:
+        return redirect("/")
+
+
+@app.route('/account/add', methods=["GET"])
+@login_required
+def add_account():
+    if current_user.user == session["user"]:
+        code = generate_password_hash(current_user.user)
+        return render_template("new_account.html", code=code)
     else:
         return redirect("/")
 

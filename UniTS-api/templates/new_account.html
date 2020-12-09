@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+        {% block content %}
+		  <div class="display-4" style="text-align: center;">Show this code to a physical branch of your bank to add bank account to the app.</div>
+        <div class="card">
+			<div class="card-body">
+				<div class="flex-wrap">
+					<img style="text-align: center;" src="{{ qrcode(code) }}">
+					</div>
+				</div>
+  </div>
+		{% endblock %}
