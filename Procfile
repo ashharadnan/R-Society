@@ -1,1 +1,1 @@
-Procfile.txt 
+web: gunicorn wsgi:app
