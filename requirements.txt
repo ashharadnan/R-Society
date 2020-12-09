@@ -7,7 +7,6 @@ twilio
 flask-qrcode
 flask-bootstrap
 python-dotenv
-resources
 resource
 requests
 gunicorn
