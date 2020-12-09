@@ -13,6 +13,7 @@ are pre-requisites to host this API:
 - `flask-login`
 - `flask-wtf`
 - `twilio`
+- `flask-qrcode`
 - `pyopenssl`
   
 You may run the project through the Virtual Environment in the `\venv` folder.
